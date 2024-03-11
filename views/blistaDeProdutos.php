@@ -13,9 +13,18 @@ require __DIR__ . "/../Controller/produtoController.php";
 
 <body>
     <h1>Lista dos produtos</h1>
-    <p><?php listar_produtos() ?></p>
-    <?php var_dump($_SESSION['nome']) ?>
-
+    <form action="" method="post">
+    <?php
+            $lista = listar_produtos();
+            foreach ($lista as $key=>$produto){
+        ?>
+          <label><input type="radio" name="produto" id="<?php echo $key; ?>" value="<?php echo $produto; ?>"> <?php echo $produto; ?></label><br>
+        <?php
+            }
+        ?>
+   <!-- <?php var_dump($_SESSION['nome']) ?> -->
+         <input type="submit" value="Comprar">
+        </form>
 </body>
 
 </html>
