@@ -31,13 +31,13 @@ input[type="submit"] {
     width: 100%; 
     padding: 10px; 
     border: none; 
-    background-color: #007bff; 
+    background-color: #178b00; 
     color: #fff; 
     cursor: pointer; 
 }
 
 a {
-    color: #007bff; 
+    color: #14ac00; 
     text-decoration: none; 
     display: block; 
     margin-bottom: 10px;
