@@ -6,6 +6,7 @@ class Produto
     private $idproduto;
     private $dscproduto;
     private $preco;
+    private $count = 1;
     public function __construct(string $idproduto, string $dscproduto, float $preco)
     {
 
@@ -14,41 +15,30 @@ class Produto
         $this->preco = $preco;
     }
 
-    public function getIdProduto()
+    //Getters
+    public function get_id_produto()
     {
         return $this->idproduto;
     }
-    public function getDscProduto()
+    public function get_dsc_produto()
     {
         return $this->dscproduto;
     }
-    public function getPreco()
+    public function get_preco()
     {
         return $this->preco;
     }
-
-    public function setIdProduto(string $idproduto)
+    public function get_count()
     {
-        $this->idproduto = $idproduto;
+        return $this->count;
     }
-    public function setDscProduto(string $dscproduto)
-    {
-        $this->dscproduto = $dscproduto;
-    }
-    public function setPreco(float $preco)
-    {
-        $this->preco = $preco;
-    }
-
-    public function __toString()
-    {
-        $ret = "\nId do produto: " . $this->getIdProduto() . "\n";
-        $ret .= "Descrição do produto: " . $this->getDscProduto() . "\n";
-        $ret .= "Preço do produto: " . $this->getPreco() . "\n";
-        return (string) $ret;
-    }
-
-    public static function verificaRetornaArrayProdutos($produtos)
+    /**
+     * Essa função é feita para receber o retorno da API de produtos
+     * Ela recebe como parâmetro a lista de produtos
+     * Verifica se tudo está setado corretamente
+     * Percorre a lista, salva os dados em um objeto PRODUTO, salva em um array e retorna o array
+     */
+    public static function verifica_retorna_array_produtos(array $produtos)
     {
         if ($produtos && isset($produtos['result'])) {
 
@@ -64,10 +54,13 @@ class Produto
 
                 array_push($lista_de_produtos, $produto);
             }
-        } else {
-            echo "Não foi possível retornar os produtos!";
+            return $lista_de_produtos;
         }
-        return $lista_de_produtos;
+        return false;
     }
-    //precisa criar uma função apra retornarum produto por ID
+    public function incrementa_count()
+    {
+        $this->count += 1;
+        return $this->count;
+    }
 }

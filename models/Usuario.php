@@ -16,50 +16,30 @@ class Usuario
         $this->cpf = $cpf;
         $this->idpessoa = $idpessoa;
     }
-
-    public function getNome()
+    //Getters
+    public function get_nome()
     {
         return $this->nome;
     }
-    public function getEmail()
+    public function get_email()
     {
         return $this->email;
     }
-    public function getCpf()
+    public function get_cpf()
     {
         return $this->cpf;
     }
-    public function getIdPessoa()
+    public function get_id_pessoa()
     {
         return $this->idpessoa;
     }
-    public function setNome(string $nome)
+    /**
+     * Essa função existe para receber o retorno da API de usuários
+     * A função valida se os dados estão setados, cria um objeto USUARIO e retorna
+     */
+    public static function verifica_retorna_usuario(array $pessoa)
     {
-        $this->nome = $nome;
-    }
-    public function setEmail(string $email)
-    {
-        $this->email = $email;
-    }
-    public function setCpf(string $cpf)
-    {
-        $this->cpf = $cpf;
-    }
-    public function setIdPessoa(string $idpessoa)
-    {
-        $this->idpessoa = $idpessoa;
-    }
-    public function __toString()
-    {
-        $ret = "\nId do usuário: " . $this->getIdPessoa() . "\n";
-        $ret .= "Nome do usuário: " . $this->getNome() . "\n";
-        $ret .= "Cpf do usuário: " . $this->getCpf() . "\n";
-        $ret .= "Email do usuário: " . $this->getEmail() . "\n";
 
-        return (string) $ret;
-    }
-    public static function verificaRetornaUsuario($pessoa)
-    {
         if ($pessoa && isset($pessoa['result']['results'][0])) {
             $dados = $pessoa['result']['results'][0];
 
@@ -69,9 +49,9 @@ class Usuario
                 $dados['cpf'],
                 $dados['idpessoa']
             );
-        } else {
-            return false;
+
+            return $usuario;
         }
-        return $usuario;
+        return false;
     }
 }

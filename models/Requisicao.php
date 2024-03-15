@@ -3,9 +3,9 @@
 class Requisicao
 {
     /**
-     * Chama a API e retorna um usuário
+     * Faz a requisição à API e retorna o resultado
      */
-    public static function requisicaoLogin(String $cpf, String $email)
+    public static function requisicao_login(String $cpf, String $email)
     {
         $urlBase = 'https://ah.we.imply.com/loginDesafio3';
         $urlCompleta = "$urlBase/$cpf/$email";
@@ -24,7 +24,6 @@ class Requisicao
 
         $decodificado = json_decode($response, true);
 
-
         if (!$decodificado) {
             http_response_code(404);
             echo json_encode(['message' => 'Data not found']);
@@ -34,9 +33,9 @@ class Requisicao
         return $decodificado;
     }
     /**
-     * Chama a API e retorna uma json de produtos
+     * Faz a requisição à API e retorna o resultado
      */
-    public static function requisicaoProdutos()
+    public static function requisicao_produtos()
     {
 
         $url = 'https://ah.we.imply.com/getProdutos';
